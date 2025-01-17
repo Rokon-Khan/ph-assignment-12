@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 
-// import Footer from "../components/Footer";
-// import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const MainLaout = () => {
   return (
     <div>
       {/* Navbar */}
-      {/* <Navbar></Navbar> */}
+      <Navbar></Navbar>
       {/* Hero */}
       <div className="min-h-[calc(100vh-300px)]">
         {/* Dynamic Contents */}
@@ -15,7 +15,7 @@ const MainLaout = () => {
       </div>
 
       {/* Footer */}
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </div>
   );
 };
