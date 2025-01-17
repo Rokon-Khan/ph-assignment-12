@@ -1,7 +1,12 @@
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div>
-      <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
+      <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl my-6">
         <div
           className="hidden bg-cover lg:block lg:w-1/2"
           style={{
@@ -11,13 +16,13 @@ const Login = () => {
         ></div>
 
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          <div className="flex justify-center mx-auto">
+          {/* <div className="flex justify-center mx-auto">
             <img
               className="w-auto h-7 sm:h-8"
               src="https://merakiui.com/images/logo.svg"
               alt=""
             />
-          </div>
+          </div> */}
 
           <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
             Welcome back!
@@ -49,7 +54,7 @@ const Login = () => {
             </div>
 
             <span className="w-5/6 px-4 py-3 font-bold text-center">
-              Sign in with Google
+              Login with Google
             </span>
           </a>
 
@@ -88,36 +93,49 @@ const Login = () => {
               >
                 Password
               </label>
+            </div>
+
+            <div className="relative">
+              <input
+                id="loggingPassword"
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                type={showPassword ? "text" : "password"}
+                name="password"
+              />
+              <p
+                onClick={() => setShowPassword(!showPassword)}
+                className="btn btn-xs absolute right-2 top-2"
+              >
+                {showPassword ? (
+                  <FaEyeSlash className="text-black"></FaEyeSlash>
+                ) : (
+                  <FaEye className="text-black"></FaEye>
+                )}
+              </p>
               <a
                 href="#"
-                className="text-xs text-gray-500 dark:text-gray-300 hover:underline"
+                className="text-xs text-blue-400 dark:text-gray-300 hover:underline"
               >
                 Forget Password?
               </a>
             </div>
-
-            <input
-              id="loggingPassword"
-              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-              type="password"
-            />
           </div>
 
           <div className="mt-6">
             <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
-              Sign In
+              Login
             </button>
           </div>
 
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
 
-            <a
-              href="#"
-              className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
+            <Link
+              to="/sign-up"
+              className="text-xs font-bold text-gray-500 uppercase dark:text-gray-800 hover:underline"
             >
-              or sign up
-            </a>
+              or Create an account
+            </Link>
 
             <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
           </div>
