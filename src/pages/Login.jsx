@@ -1,8 +1,8 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useContext, useState } from "react";
-import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../authprovider/AuthProvider";
 
 const Login = () => {
@@ -13,7 +13,35 @@ const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  console.log("location in the login page", location);
+  // console.log("location in the login page", location);
+
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.currentTarget);
+  //   const form = new FormData(e.currentTarget);
+  //   const email = form.get("email");
+  //   const password = form.get("password");
+  //   console.log(email, password);
+
+  //   signIn(email, password)
+  //     .then((result) => {
+  //       console.log(result.user);
+
+  //       // navigate after login
+  //       navigate(location?.state ? location.state : "/");
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       // Handle errors with if-else
+  //       if (error.code === "auth/user-not-found") {
+  //         setError("No user found with this email.");
+  //         toast.error("An invalid Email or Password");
+  //       } else {
+  //         setError("An unexpected error occurred. Please try again.");
+  //         toast.error("An invalid Email or Password, Please try again.");
+  //       }
+  //     });
+  // };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -27,18 +55,36 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
 
-        // navigate after login
-        navigate(location?.state ? location.state : "/");
+        // Show success alert
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "Welcome back!",
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          // Navigate after showing the alert
+          navigate(location?.state ? location.state : "/");
+        });
       })
       .catch((error) => {
         console.error(error);
-        // Handle errors with if-else
+
+        // Show error alert based on error code
         if (error.code === "auth/user-not-found") {
           setError("No user found with this email.");
-          toast.error("An invalid Email or Password");
+          Swal.fire({
+            icon: "error",
+            title: "Login Failed",
+            text: "An invalid Email or Password",
+          });
         } else {
           setError("An unexpected error occurred. Please try again.");
-          toast.error("An invalid Email or Password, Please try again.");
+          Swal.fire({
+            icon: "error",
+            title: "Login Failed",
+            text: "An invalid Email or Password, Please try again.",
+          });
         }
       });
   };
