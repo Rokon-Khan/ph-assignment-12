@@ -3,9 +3,17 @@ import MainLaout from "../layout/MainLayout";
 
 import Error from "../components/Error";
 import DashboardLayout from "../layout/DashboardLayout";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import Profile from "../pages/Dashboard/Common/Profile";
+import Statistics from "../pages/Dashboard/Common/Statistics";
+import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+import AddPlant from "../pages/Dashboard/Seller/AddPlant";
+import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
+import MyInventory from "../pages/Dashboard/Seller/MyInventory";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -30,63 +38,63 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <DashboardLayout />
-      // <PrivateRoute>
-      // </PrivateRoute>
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
     ),
     children: [
-      // {
-      //   index: true,
-      //   element: (
-      //     <PrivateRoute>
-      //       <Statistics />
-      //     </PrivateRoute>
-      //   ),
-      // },
-      // {
-      //   path: 'add-plant',
-      //   element: (
-      //     <PrivateRoute>
-      //       <AddPlant />
-      //     </PrivateRoute>
-      //   ),
-      // },
-      // {
-      //   path: 'my-inventory',
-      //   element: (
-      //     <PrivateRoute>
-      //       <MyInventory />
-      //     </PrivateRoute>
-      //   ),
-      // },
-      // {
-      //   path: 'manage-users',
-      //   element: (
-      //     <PrivateRoute>
-      //       <ManageUsers />
-      //     </PrivateRoute>
-      //   ),
-      // },
-      // {
-      //   path: 'profile',
-      //   element: (
-      //     <PrivateRoute>
-      //       <Profile />
-      //     </PrivateRoute>
-      //   ),
-      // },
-      // {
-      //   path: 'my-orders',
-      //   element: (
-      //     <PrivateRoute>
-      //       <MyOrders />
-      //     </PrivateRoute>
-      //   ),
-      // },
-      // {
-      //   path: 'manage-orders',
-      //   element: <ManageOrders />,
-      // },
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-plant",
+        element: (
+          <PrivateRoute>
+            <AddPlant />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-inventory",
+        element: (
+          <PrivateRoute>
+            <MyInventory />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <ManageUsers />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-orders",
+        element: (
+          <PrivateRoute>
+            <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-orders",
+        element: <ManageOrders />,
+      },
     ],
   },
 
