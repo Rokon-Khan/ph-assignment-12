@@ -1,33 +1,103 @@
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  updateProfile,
-} from "firebase/auth";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../authprovider/AuthProvider";
+import { imageUpload } from "../api/utils";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-  const { createUser } = useContext(AuthContext);
+  // const auth = getAuth();
+  // const provider = new GoogleAuthProvider();
+  const { createUser, updateUserProfile, signInWithGoogle, loading } =
+    useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
+
+  //   const form = new FormData(e.currentTarget);
+  //   const name = form.get("name");
+  //   // const photo = form.get("photo");
+  //   const email = form.get("email");
+  //   const password = form.get("password");
+  //   const image = form.image.files[0];
+
+  //   //1. send image data to imgbb
+  //   const photoURL = await imageUpload(image);
+
+  //   const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+  //   setErrorMessage("");
+  //   setSuccess(false);
+
+  //   if (password.length < 6) {
+  //     setErrorMessage("Password should be 6 characters or longer");
+  //     return;
+  //   }
+
+  //   if (!regex.test(password)) {
+  //     setErrorMessage(
+  //       "At least one uppercase, one lowercase, and more than 6 characters"
+  //     );
+  //     return;
+  //   }
+
+  //   try {
+  //     //2. User Registration
+  //     const result = await createUser(email, password);
+
+  //     //3. Save username & profile photo
+  //     await updateUserProfile(name, photoURL);
+  //     console.log(result);
+
+  //     // Prepare user object for MongoDB
+  //     const newUser = {
+  //       uid: firebaseUser.uid,
+  //       name,
+  //       image,
+  //       email,
+  //     };
+
+  //     // Add user to MongoDB
+  //     const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify(newUser),
+  //     });
+
+  //     const data = await response.json();
+  //     if (data.insertedId) {
+  //       Swal.fire({
+  //         title: "Wow!!!",
+  //         text: "User Added Successfully!",
+  //         icon: "success",
+  //       });
+  //       // form.reset();
+  //       navigate(location?.state ? location.state : "/");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error during registration:", error);
+  //     setErrorMessage(error.message);
+  //   }
+  // };
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
     const form = new FormData(e.currentTarget);
     const name = form.get("name");
-    const photo = form.get("photo");
     const email = form.get("email");
     const password = form.get("password");
+    const image = form.get("image"); // Correct way to access the image file
+
+    //1. send image data to imgbb
+    const photoURL = await imageUpload(image);
 
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     setErrorMessage("");
@@ -46,21 +116,18 @@ const Register = () => {
     }
 
     try {
-      // Create Firebase user
+      //2. User Registration
       const result = await createUser(email, password);
-      const firebaseUser = result.user;
 
-      // Update profile
-      await updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: photo,
-      });
+      //3. Save username & profile photo
+      await updateUserProfile(name, photoURL);
+      console.log(result);
 
       // Prepare user object for MongoDB
       const newUser = {
-        uid: firebaseUser.uid,
+        uid: result.user.uid, // Ensure you reference the correct user object
         name,
-        photo,
+        photo: photoURL, // Correctly use photoURL instead of image
         email,
       };
 
@@ -80,7 +147,6 @@ const Register = () => {
           text: "User Added Successfully!",
           icon: "success",
         });
-        // form.reset();
         navigate(location?.state ? location.state : "/");
       }
     } catch (error) {
@@ -91,9 +157,12 @@ const Register = () => {
 
   const handleSignWithGoogle = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      const firebaseUser = result.user;
+      // const result = await signInWithPopup(auth, provider);
+      // const firebaseUser = result.user;
+      //User Registration using google
+      const result = await signInWithGoogle();
 
+      const firebaseUser = result.user;
       // Prepare user object for MongoDB
       const newUser = {
         uid: firebaseUser.uid,
@@ -203,7 +272,7 @@ const Register = () => {
                   Your Full Name
                 </label>
                 <input
-                  id="LoggingEmailAddress"
+                  id="userName"
                   className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
                   type="text"
                   name="name"
@@ -253,7 +322,7 @@ const Register = () => {
                   </p>
                 </div>
               </div>
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <div className="flex justify-between">
                   <label
                     className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
@@ -269,11 +338,33 @@ const Register = () => {
                   type="text"
                   name="photo"
                 />
+              </div> */}
+              <div className="mt-4">
+                <label htmlFor="image" className="block mb-2 text-sm">
+                  Upload Your Profile Image:
+                </label>
+                <input
+                  required
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                />
               </div>
 
               <div className="mt-6">
-                <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                {/* <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                   Create Account
+                </button> */}
+                <button
+                  type="submit"
+                  className="bg-lime-500 w-full rounded-md py-3 text-white"
+                >
+                  {loading ? (
+                    <TbFidgetSpinner className="animate-spin m-auto" />
+                  ) : (
+                    "Continue"
+                  )}
                 </button>
               </div>
               {errorMessage && <p className="text-red-600">{errorMessage}</p>}

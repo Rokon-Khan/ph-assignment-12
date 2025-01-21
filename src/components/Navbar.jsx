@@ -58,18 +58,6 @@ const Navbar = () => {
               >
                 Home
               </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  `font-bold ${
-                    isActive
-                      ? "text-blue-500 bg-white px-3 py-2 rounded-xl"
-                      : "hover:text-blue-500"
-                  }`
-                }
-                to="/create-assignment"
-              >
-                Create Assignment
-              </NavLink>
 
               <NavLink
                 className={({ isActive }) =>
@@ -79,22 +67,11 @@ const Navbar = () => {
                       : "hover:text-blue-500"
                   }`
                 }
-                to="/assignments"
+                to="/classes"
               >
-                Assignments
+                Classes
               </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  `font-bold ${
-                    isActive
-                      ? "text-blue-500  bg-white px-3 py-2 rounded-xl"
-                      : "hover:text-blue-500"
-                  }`
-                }
-                to="/pendingassignment"
-              >
-                Pending Assignment
-              </NavLink>
+
               <NavLink
                 className={({ isActive }) =>
                   `font-bold ${
@@ -111,7 +88,7 @@ const Navbar = () => {
           </div>
           <Link
             to="/"
-            className="btn btn-ghost text-xl font-bold lg:flex hidden"
+            className="btn btn-ghost text-blue-500 text-2xl font-bold lg:flex hidden"
           >
             Edu_Management
           </Link>
@@ -130,18 +107,7 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            {/* <NavLink
-              className={({ isActive }) =>
-                `font-bold ${
-                  isActive
-                    ? "text-blue-500 bg-white px-3 py-2 rounded-xl"
-                    : "hover:text-blue-500"
-                }`
-              }
-              to="/create-assignment"
-            >
-              Create Assignment
-            </NavLink> */}
+
             <NavLink
               className={({ isActive }) =>
                 `font-bold ${
@@ -150,9 +116,9 @@ const Navbar = () => {
                     : "hover:text-blue-500"
                 }`
               }
-              to="/assignments"
+              to="/classes"
             >
-              Assignments
+              Classes
             </NavLink>
             <NavLink
               className={({ isActive }) =>
@@ -162,9 +128,9 @@ const Navbar = () => {
                     : "hover:text-blue-500"
                 }`
               }
-              to="/pendingassignment"
+              to="/teach-on"
             >
-              Pending Assignment
+              Teach On
             </NavLink>
             <NavLink
               className={({ isActive }) =>
@@ -241,12 +207,7 @@ const Navbar = () => {
                       />
                     </div>
                   </div>
-                  <button
-                    onClick={handleLogOut}
-                    className="btn bg-blue-500 text-lg text-white font-bold"
-                  >
-                    Log Out
-                  </button>
+
                   <div>
                     <ul
                       tabIndex={0}
@@ -261,47 +222,25 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
-                          to="/create-assignment"
-                          className="btn bg-warning text-base text-white"
+                          to="/dashboard"
+                          className="btn bg-blue-500 text-base text-white"
                         >
-                          Create Assignment
+                          Dashboard
                         </Link>
                       </li>
+
                       <li>
-                        <Link
-                          to="/mysubmittedassinment"
-                          className="btn bg-warning text-base text-white"
+                        <button
+                          onClick={handleLogOut}
+                          className="btn bg-blue-500 text-lg text-white font-bold"
                         >
-                          My Submission
-                        </Link>
+                          Log Out
+                        </button>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-              {/* <img
-                className="w-[60px] h-[60px] border-4 border-zinc-300 rounded-full cursor-pointer"
-                src={user?.photoURL}
-                alt=""
-              /> */}
-
-              {/* <button
-                onClick={handleLogOut}
-                className="btn bg-green-400 text-xl text-white font-bold "
-              >
-                Log Out
-              </button> */}
-              {/* <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 hidden group-hover:flex flex-col items-center bg-white p-4 rounded-lg shadow-lg w-[200px]">
-                <h3 className="text-xl font-bold text-center text-gray-700">
-                  {user?.displayName}
-                </h3>
-                <button
-                  onClick={handleLogOut}
-                  className="btn bg-green-400 text-lg text-white font-bold"
-                >
-                  Log Out
-                </button>
-              </div> */}
             </div>
           ) : (
             <Link to="/login">
