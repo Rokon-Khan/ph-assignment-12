@@ -1,7 +1,12 @@
 import PropTypes from "prop-types";
 import { TbFidgetSpinner } from "react-icons/tb";
 
-const AddClass = ({ handleSubmit, uploadImage, setUploadImage, loading }) => {
+const AddClassForm = ({
+  handleSubmit,
+  uploadImage,
+  setUploadImage,
+  loading,
+}) => {
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <form onSubmit={handleSubmit}>
@@ -17,7 +22,7 @@ const AddClass = ({ handleSubmit, uploadImage, setUploadImage, loading }) => {
                 name="name"
                 id="name"
                 type="text"
-                placeholder="Class Name"
+                placeholder="Plant Name"
                 required
               />
             </div>
@@ -45,7 +50,7 @@ const AddClass = ({ handleSubmit, uploadImage, setUploadImage, loading }) => {
 
               <textarea
                 id="description"
-                placeholder="Write Class description here..."
+                placeholder="Write plant description here..."
                 className="block rounded-md focus:blue-300 w-full h-32 px-4 py-3 text-gray-800  border border-blue-300 bg-white focus:outline-blue-500 "
                 name="description"
               ></textarea>
@@ -135,11 +140,11 @@ const AddClass = ({ handleSubmit, uploadImage, setUploadImage, loading }) => {
   );
 };
 
-AddClass.propTypes = {
+AddClassForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   setUploadImage: PropTypes.func.isRequired,
   uploadImage: PropTypes.object,
   loading: PropTypes.bool,
 };
 
-export default AddClass;
+export default AddClassForm;
