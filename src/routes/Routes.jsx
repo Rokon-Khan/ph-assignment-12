@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLaout from "../layout/MainLayout";
 
 import Error from "../components/Error";
+import AddClass from "../components/Form/AddClass";
 import DashboardLayout from "../layout/DashboardLayout";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
-import AddPlant from "../pages/Dashboard/Seller/AddPlant";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import MyInventory from "../pages/Dashboard/Seller/MyInventory";
 import Home from "../pages/Home";
@@ -52,10 +52,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "add-plant",
+        path: "add-class",
         element: (
           <PrivateRoute>
-            <AddPlant />
+            <AddClass />
           </PrivateRoute>
         ),
       },

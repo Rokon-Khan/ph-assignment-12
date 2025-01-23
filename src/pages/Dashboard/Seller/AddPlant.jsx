@@ -1,17 +1,18 @@
-import { Helmet } from 'react-helmet-async'
-import AddPlantForm from '../../../components/Form/AddPlantForm'
+import { Helmet } from "react-helmet-async";
+import AddClass from "../../../components/Form/AddClass";
 
 const AddPlant = () => {
   return (
     <div>
       <Helmet>
-        <title>Add Plant | Dashboard</title>
+        <title>Add Class | Dashboard</title>
       </Helmet>
 
       {/* Form */}
-      <AddPlantForm />
+      {/* <AddPlantForm /> */}
+      <AddClass></AddClass>
     </div>
-  )
-}
+  );
+};
 
-export default AddPlant
+export default AddPlant;
