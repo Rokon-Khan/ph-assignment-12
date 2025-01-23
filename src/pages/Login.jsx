@@ -1,14 +1,17 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useContext, useState } from "react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../providers/AuthProvider";
+import LoadingSpinner from "../components/Shared/LoadingSpinner";
+import useAuth from "../hooks/useAuth";
+// import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-  const { signIn, setForgetEmail } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, loading, user } = useAuth();
+  // const auth = getAuth();
+  // const provider = new GoogleAuthProvider();
+  // const { signIn, setForgetEmail } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +45,7 @@ const Login = () => {
   //       }
   //     });
   // };
-
+  if (loading) return <LoadingSpinner />;
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(e.currentTarget);
@@ -93,28 +96,40 @@ const Login = () => {
     setForgetEmail(e.target.value);
   };
 
-  const handleSigWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
+  // const handleSigWithGoogle = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       // This gives you a Google Access Token. You can use it to access the Google API.
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       // The signed-in user info.
+  //       const user = result.user;
+  //       // IdP data available using getAdditionalUserInfo(result)
+  //       // ...
+  //       navigate(location?.state ? location.state : "/");
+  //     })
+  //     .catch((error) => {
+  //       // Handle Errors here.
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // The email of the user's account used.
+  //       const email = error.customData.email;
+  //       // The AuthCredential type that was used.
+  //       const credential = GoogleAuthProvider.credentialFromError(error);
+  //       // ...
+  //     });
+  // };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      //User Registration using google
+      await signInWithGoogle();
+      navigate(location?.state ? location.state : "/");
+      toast.success("Login Successful");
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
   };
 
   return (
@@ -142,7 +157,7 @@ const Login = () => {
           </p>
 
           <button
-            onClick={handleSigWithGoogle}
+            onClick={handleGoogleSignIn}
             className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
             <div className="px-4 py-2">

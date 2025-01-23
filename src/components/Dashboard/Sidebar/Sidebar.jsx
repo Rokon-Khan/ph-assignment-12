@@ -55,7 +55,9 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
               <Link to="/">
-                <h2>Edu_Managemnet</h2>
+                <h2 className="text-2xl font-semibold text-blue-500">
+                  Edu_Managemnet
+                </h2>
                 {/* <img
                   // className='hidden md:block'
                   src={logo}
