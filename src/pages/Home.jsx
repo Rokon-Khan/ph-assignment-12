@@ -1,7 +1,9 @@
+import Slider from "../components/Slider";
+
 const Home = () => {
   return (
     <div>
-      <h2 className="text-3xl font-bold text-center">This is Home Page</h2>
+      <Slider></Slider>
     </div>
   );
 };
