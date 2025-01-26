@@ -11,6 +11,7 @@ import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import MyInventory from "../pages/Dashboard/Seller/MyInventory";
 import AddClass from "../pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
+import UpdateClassForm from "../pages/Dashboard/Teacher/UpdateClassForm";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -65,6 +66,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyClasses></MyClasses>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "update-class/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateClassForm></UpdateClassForm>
           </PrivateRoute>
         ),
       },

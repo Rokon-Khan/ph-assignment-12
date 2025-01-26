@@ -1,22 +1,21 @@
-import axios from "axios";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-const ClassCard = ({ classData }) => {
+const ClassCard = ({ classData, handleDelete }) => {
   const navigate = useNavigate();
   const { _id, name, price, description, image, status, teacher } = classData;
 
-  const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this class?")) {
-      try {
-        await axios.delete(`/classes/${_id}`);
-        alert("Class deleted successfully");
-        window.location.reload(); // Reload the page to update the list
-      } catch (error) {
-        console.error("Failed to delete class:", error);
-      }
-    }
-  };
+  //   const handleDelete = async () => {
+  //     if (window.confirm("Are you sure you want to delete this class?")) {
+  //       try {
+  //         await axios.delete(`/classes/${_id}`);
+  //         alert("Class deleted successfully");
+  //         window.location.reload(); // Reload the page to update the list
+  //       } catch (error) {
+  //         console.error("Failed to delete class:", error);
+  //       }
+  //     }
+  //   };
 
   const handleUpdate = () => {
     navigate(`/dashboard/update-class/${_id}`);
@@ -46,9 +45,15 @@ const ClassCard = ({ classData }) => {
         >
           Update
         </button>
-        <button
+        {/* <button
           onClick={handleDelete}
           className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Delete
+        </button> */}
+        <button
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          onClick={() => handleDelete(_id)}
         >
           Delete
         </button>
