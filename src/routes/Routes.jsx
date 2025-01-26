@@ -7,9 +7,10 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
-import AddPlant from "../pages/Dashboard/Seller/AddPlant";
 import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
 import MyInventory from "../pages/Dashboard/Seller/MyInventory";
+import AddClass from "../pages/Dashboard/Teacher/AddClass";
+import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -55,7 +56,15 @@ const router = createBrowserRouter([
         path: "add-class",
         element: (
           <PrivateRoute>
-            <AddPlant></AddPlant>
+            <AddClass></AddClass>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-class",
+        element: (
+          <PrivateRoute>
+            <MyClasses></MyClasses>
           </PrivateRoute>
         ),
       },

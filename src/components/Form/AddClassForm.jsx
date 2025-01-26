@@ -1,17 +1,167 @@
+// import PropTypes from "prop-types";
+// import { TbFidgetSpinner } from "react-icons/tb";
+
+// const AddClassForm = ({
+//   handleSubmit,
+//   uploadImage,
+//   setUploadImage,
+//   loading,
+// }) => {
+//   return (
+//     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
+//       <form onSubmit={handleSubmit}>
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+//           <div className="space-y-6">
+//             {/* Name */}
+//             <div className="space-y-1 text-sm">
+//               <label htmlFor="name" className="block text-gray-600">
+//                 Class Title
+//               </label>
+//               <input
+//                 className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+//                 name="name"
+//                 id="name"
+//                 type="text"
+//                 placeholder="Plant Name"
+//                 required
+//               />
+//             </div>
+
+//             {/* Description */}
+//             <div className="space-y-1 text-sm">
+//               <label htmlFor="description" className="block text-gray-600">
+//                 Class Description
+//               </label>
+
+//               <textarea
+//                 id="description"
+//                 placeholder="Write plant description here..."
+//                 className="block rounded-md focus:blue-300 w-full h-32 px-4 py-3 text-gray-800  border border-blue-300 bg-white focus:outline-blue-500 "
+//                 name="description"
+//               ></textarea>
+//             </div>
+//           </div>
+//           <div className="space-y-6 flex flex-col">
+//             {/* Price & Quantity */}
+//             <div className="flex justify-between gap-2">
+//               {/* Price */}
+//               <div className="space-y-1 text-sm">
+//                 <label htmlFor="price" className="block text-gray-600 ">
+//                   Class Price
+//                 </label>
+//                 <input
+//                   className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+//                   name="price"
+//                   id="price"
+//                   type="number"
+//                   placeholder="Price per unit"
+//                   required
+//                 />
+//               </div>
+
+//               {/* Quantity */}
+//               <div className="space-y-1 text-sm">
+//                 <label htmlFor="quantity" className="block text-gray-600">
+//                   Teacher Name
+//                 </label>
+//                 <input
+//                   className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+//                   name="name"
+//                   id="name"
+//                   type="number"
+//                   placeholder="Available quantity"
+//                   required
+//                 />
+//               </div>
+//             </div>
+//             {/* Image */}
+//             <div className=" p-4  w-full  m-auto rounded-lg flex-grow">
+//               <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
+//                 <div className="flex flex-col w-max mx-auto text-center">
+//                   <label>
+//                     <input
+//                       onChange={(e) =>
+//                         setUploadImage({
+//                           image: e.target.files[0],
+//                           url: URL.createObjectURL(e.target.files[0]),
+//                         })
+//                       }
+//                       className="text-sm cursor-pointer w-36 hidden"
+//                       type="file"
+//                       name="image"
+//                       id="image"
+//                       accept="image/*"
+//                       hidden
+//                     />
+//                     <div className="bg-blue-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-blue-500">
+//                       {uploadImage?.image?.name}
+//                     </div>
+//                   </label>
+//                 </div>
+//               </div>
+//             </div>
+//             {uploadImage && uploadImage?.image?.size && (
+//               <div className="flex gap-5 items-center">
+//                 <img className="w-20" src={uploadImage?.url} alt="" />
+//                 <p>Image Size: {uploadImage?.image?.size} Bytes</p>
+//               </div>
+//             )}
+
+//             {/* Submit Button */}
+//             <button
+//               type="submit"
+//               className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-blue-500 "
+//             >
+//               {loading ? (
+//                 <TbFidgetSpinner className="animate-spin m-auto" />
+//               ) : (
+//                 "Add Class"
+//               )}
+//             </button>
+//           </div>
+//         </div>
+//       </form>
+//     </div>
+//   );
+// };
+
+// AddClassForm.propTypes = {
+//   handleSubmit: PropTypes.func.isRequired,
+//   setUploadImage: PropTypes.func.isRequired,
+//   uploadImage: PropTypes.object,
+//   loading: PropTypes.bool,
+// };
+
+// export default AddClassForm;
 import PropTypes from "prop-types";
 import { TbFidgetSpinner } from "react-icons/tb";
-
 const AddClassForm = ({
   handleSubmit,
   uploadImage,
   setUploadImage,
   loading,
+  user,
 }) => {
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div className="space-y-6">
+            {/* User Name */}
+            <div className="space-y-1 text-sm">
+              <label htmlFor="userName" className="block text-gray-600">
+                Teacher Name
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-gray-200 cursor-not-allowed"
+                name="userName"
+                id="userName"
+                type="text"
+                value={user?.displayName || ""}
+                readOnly
+              />
+            </div>
+
             {/* Name */}
             <div className="space-y-1 text-sm">
               <label htmlFor="name" className="block text-gray-600">
@@ -22,75 +172,58 @@ const AddClassForm = ({
                 name="name"
                 id="name"
                 type="text"
-                placeholder="Plant Name"
+                placeholder="Class Name"
                 required
               />
             </div>
-            {/* Category */}
-            {/* <div className="space-y-1 text-sm">
-              <label htmlFor="category" className="block text-gray-600 ">
-                Category
-              </label>
-              <select
-                required
-                className="w-full px-4 py-3 border-blue-300 focus:outline-blue-500 rounded-md bg-white"
-                name="category"
-              >
-                <option value="Indoor">Indoor</option>
-                <option value="Outdoor">Outdoor</option>
-                <option value="Succulent">Succulent</option>
-                <option value="Flowering">Flowering</option>
-              </select>
-            </div> */}
+
             {/* Description */}
             <div className="space-y-1 text-sm">
               <label htmlFor="description" className="block text-gray-600">
-                Description
+                Class Description
               </label>
-
               <textarea
                 id="description"
-                placeholder="Write plant description here..."
-                className="block rounded-md focus:blue-300 w-full h-32 px-4 py-3 text-gray-800  border border-blue-300 bg-white focus:outline-blue-500 "
+                placeholder="Write class description here..."
+                className="block rounded-md focus:blue-300 w-full h-32 px-4 py-3 text-gray-800 border border-blue-300 bg-white focus:outline-blue-500"
                 name="description"
               ></textarea>
             </div>
           </div>
-          <div className="space-y-6 flex flex-col">
-            {/* Price & Quantity */}
-            <div className="flex justify-between gap-2">
-              {/* Price */}
-              <div className="space-y-1 text-sm">
-                <label htmlFor="price" className="block text-gray-600 ">
-                  Price
-                </label>
-                <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
-                  name="price"
-                  id="price"
-                  type="number"
-                  placeholder="Price per unit"
-                  required
-                />
-              </div>
 
-              {/* Quantity */}
-              {/* <div className="space-y-1 text-sm">
-                <label htmlFor="quantity" className="block text-gray-600">
-                  Quantity
-                </label>
-                <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
-                  name="quantity"
-                  id="quantity"
-                  type="number"
-                  placeholder="Available quantity"
-                  required
-                />
-              </div> */}
+          <div className="space-y-6 flex flex-col">
+            {/* User Email */}
+            <div className="space-y-1 text-sm">
+              <label htmlFor="userEmail" className="block text-gray-600">
+                Teacher Email
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-gray-200 cursor-not-allowed"
+                name="userEmail"
+                id="userEmail"
+                type="email"
+                value={user?.email || ""}
+                readOnly
+              />
             </div>
-            {/* Image */}
-            <div className=" p-4  w-full  m-auto rounded-lg flex-grow">
+
+            {/* Price */}
+            <div className="space-y-1 text-sm">
+              <label htmlFor="price" className="block text-gray-600">
+                Class Price
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+                name="price"
+                id="price"
+                type="number"
+                placeholder="Price"
+                required
+              />
+            </div>
+
+            {/* Image Upload */}
+            <div className="p-4 w-full m-auto rounded-lg flex-grow">
               <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
                 <div className="flex flex-col w-max mx-auto text-center">
                   <label>
@@ -115,6 +248,7 @@ const AddClassForm = ({
                 </div>
               </div>
             </div>
+
             {uploadImage && uploadImage?.image?.size && (
               <div className="flex gap-5 items-center">
                 <img className="w-20" src={uploadImage?.url} alt="" />
@@ -125,12 +259,12 @@ const AddClassForm = ({
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-blue-500 "
+              className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-blue-500"
             >
               {loading ? (
                 <TbFidgetSpinner className="animate-spin m-auto" />
               ) : (
-                "Save & Continue"
+                "Add Class"
               )}
             </button>
           </div>
@@ -145,6 +279,7 @@ AddClassForm.propTypes = {
   setUploadImage: PropTypes.func.isRequired,
   uploadImage: PropTypes.object,
   loading: PropTypes.bool,
+  user: PropTypes.object.isRequired,
 };
 
 export default AddClassForm;

@@ -10,7 +10,7 @@ import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import AdminMenu from "./Menu/AdminMenu";
 import CustomerMenu from "./Menu/CustomerMenu";
-import SellerMenu from "./Menu/SellerMenu";
+import TeacherMenu from "./Menu/TeacherMenu";
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
@@ -74,7 +74,8 @@ const Sidebar = () => {
             <nav>
               {/*  Menu Items */}
               <CustomerMenu />
-              <SellerMenu />
+              {/* <SellerMenu /> */}
+              <TeacherMenu />
 
               <MenuItem
                 icon={BsGraphUp}
