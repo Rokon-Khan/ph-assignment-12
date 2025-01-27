@@ -355,10 +355,11 @@ const Register = () => {
     try {
       //2. User Registration
       const result = await createUser(email, password);
-      console.log(result);
+
       //3. Save username & profile photo
       await updateUserProfile(name, photoURL);
-      console.log(updateUserProfile);
+      console.log(result);
+      // save user info in db if the user is new
       await saveUser({ ...result?.user, displayName: name, photoURL });
       Swal.fire({
         title: "Success!",

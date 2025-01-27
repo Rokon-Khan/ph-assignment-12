@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { imageUpload } from "../../../api/utils";
 import AddClassForm from "../../../components/Form/AddClassForm";
 import useAuth from "../../../hooks/useAuth";
@@ -8,6 +10,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddClass = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const [uploadImage, setUploadImage] = useState({
     image: { name: "Upload Image" },
@@ -49,9 +52,24 @@ const AddClass = () => {
     try {
       // post req
       await axiosSecure.post("/allclasses", classData);
-      toast.success("Data Added Successfully!");
+
+      // toast.success("Data Added Successfully!");
+      Swal.fire({
+        title: "Success!",
+        text: "Your account has been created successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      navigate("/dashboard/my-class");
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      toast.error(err.message);
+      Swal.fire({
+        title: "Error!",
+        text: err.message || "Something went wrong!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     } finally {
       setLoading(false);
     }

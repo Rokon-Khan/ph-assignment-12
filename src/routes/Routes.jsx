@@ -15,7 +15,9 @@ import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import TeacherRoute from "./TeacherRoute";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +59,9 @@ const router = createBrowserRouter([
         path: "add-class",
         element: (
           <PrivateRoute>
-            <AddClass></AddClass>
+            <TeacherRoute>
+              <AddClass></AddClass>
+            </TeacherRoute>
           </PrivateRoute>
         ),
       },
@@ -65,7 +69,9 @@ const router = createBrowserRouter([
         path: "my-class",
         element: (
           <PrivateRoute>
-            <MyClasses></MyClasses>
+            <TeacherRoute>
+              <MyClasses></MyClasses>
+            </TeacherRoute>
           </PrivateRoute>
         ),
       },
@@ -73,7 +79,9 @@ const router = createBrowserRouter([
         path: "update-class/:id",
         element: (
           <PrivateRoute>
-            <UpdateClass></UpdateClass>
+            <TeacherRoute>
+              <UpdateClass></UpdateClass>
+            </TeacherRoute>
           </PrivateRoute>
         ),
       },
@@ -89,7 +97,9 @@ const router = createBrowserRouter([
         path: "manage-users",
         element: (
           <PrivateRoute>
-            <ManageUsers />
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
