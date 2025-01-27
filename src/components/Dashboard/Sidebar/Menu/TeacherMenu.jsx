@@ -1,5 +1,5 @@
 import { BsFillHouseAddFill } from "react-icons/bs";
-import { MdHomeWork, MdOutlineManageHistory } from "react-icons/md";
+import { MdHomeWork } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
 import MenuItem from "./MenuItem";
 const TeacherMenu = () => {
@@ -12,11 +12,11 @@ const TeacherMenu = () => {
       />
       <MenuItem icon={SiGoogleclassroom} label="My Class" address="my-class" />
       <MenuItem icon={MdHomeWork} label="My Inventory" address="my-inventory" />
-      <MenuItem
+      {/* <MenuItem
         icon={MdOutlineManageHistory}
         label="Manage Orders"
         address="manage-orders"
-      />
+      /> */}
     </>
   );
 };

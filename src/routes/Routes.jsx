@@ -4,6 +4,7 @@ import MainLaout from "../layout/MainLayout";
 import Error from "../components/Error";
 import DashboardLayout from "../layout/DashboardLayout";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import UsersTable from "../pages/Dashboard/Admin/UsersTable";
 import Profile from "../pages/Dashboard/Common/Profile";
 import Statistics from "../pages/Dashboard/Common/Statistics";
 import MyOrders from "../pages/Dashboard/Customer/MyOrders";
@@ -120,9 +121,29 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "manage-orders",
-        element: <ManageOrders />,
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageOrders />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
+      {
+        path: "users",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <UsersTable />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      // {
+      //   path: "manage-orders",
+      //   element: <ManageOrders />,
+      // },
     ],
   },
 
