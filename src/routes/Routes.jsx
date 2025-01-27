@@ -4,6 +4,7 @@ import MainLaout from "../layout/MainLayout";
 import Error from "../components/Error";
 import DashboardLayout from "../layout/DashboardLayout";
 import ApprovedClassesPage from "../pages/ApprovedClassesPage";
+import ClassDetails from "../pages/ClassDetails";
 import AllClassesTable from "../pages/Dashboard/Admin/AllClassesTable";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import UsersTable from "../pages/Dashboard/Admin/UsersTable";
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "/allclases",
         element: <ApprovedClassesPage></ApprovedClassesPage>,
+      },
+      {
+        path: "/classdetails/:id",
+        element: (
+          <PrivateRoute>
+            <ClassDetails></ClassDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/sign-up",

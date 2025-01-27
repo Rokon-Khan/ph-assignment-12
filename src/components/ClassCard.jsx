@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const ClassCard = ({ classData }) => {
-  const { name, description, price, image, teacher, totalEnrolment } =
+  const { _id, name, description, price, image, teacher, totalEnrolment } =
     classData;
 
   return (
@@ -22,9 +24,12 @@ const ClassCard = ({ classData }) => {
           ? `Total Enrolled: ${totalEnrolment}`
           : "Enrollment On Going"}
       </p>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+      <Link
+        to={`/classdetails/${_id}`}
+        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+      >
         Enroll
-      </button>
+      </Link>
     </div>
   );
 };
