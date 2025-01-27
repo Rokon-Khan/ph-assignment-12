@@ -116,9 +116,9 @@ const Navbar = () => {
                     : "hover:text-blue-500"
                 }`
               }
-              to="/classes"
+              to="/allclases"
             >
-              Classes
+              All Classes
             </NavLink>
             <NavLink
               className={({ isActive }) =>
