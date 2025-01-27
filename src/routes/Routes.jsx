@@ -3,6 +3,7 @@ import MainLaout from "../layout/MainLayout";
 
 import Error from "../components/Error";
 import DashboardLayout from "../layout/DashboardLayout";
+import AllClassesTable from "../pages/Dashboard/Admin/AllClassesTable";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import UsersTable from "../pages/Dashboard/Admin/UsersTable";
 import Profile from "../pages/Dashboard/Common/Profile";
@@ -100,6 +101,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-classes",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllClassesTable />
             </AdminRoute>
           </PrivateRoute>
         ),
