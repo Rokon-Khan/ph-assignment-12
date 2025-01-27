@@ -16,8 +16,10 @@ import MyInventory from "../pages/Dashboard/Seller/MyInventory";
 import AddClass from "../pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
 import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
+import EnrolledClasses from "../pages/EnrolledClasses";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import PaymentPage from "../pages/PaymentPage";
 import Register from "../pages/Register";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ClassDetails></ClassDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/payment/:id",
+        element: (
+          <PrivateRoute>
+            <PaymentPage></PaymentPage>
           </PrivateRoute>
         ),
       },
@@ -142,6 +152,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-enroll-classes",
+        element: (
+          <PrivateRoute>
+            <EnrolledClasses></EnrolledClasses>
           </PrivateRoute>
         ),
       },
