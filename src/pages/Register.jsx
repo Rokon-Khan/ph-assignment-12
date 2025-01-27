@@ -330,7 +330,8 @@ import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
-import { imageUpload } from "../api/utils";
+import Swal from "sweetalert2";
+import { imageUpload, saveUser } from "../api/utils";
 import useAuth from "../hooks/useAuth";
 
 const Register = () => {
@@ -338,6 +339,7 @@ const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
   const navigate = useNavigate();
+
   // form submit handler
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -353,18 +355,82 @@ const Register = () => {
     try {
       //2. User Registration
       const result = await createUser(email, password);
-
+      console.log(result);
       //3. Save username & profile photo
       await updateUserProfile(name, photoURL);
-      console.log(result);
+      console.log(updateUserProfile);
+      await saveUser({ ...result?.user, displayName: name, photoURL });
+      Swal.fire({
+        title: "Success!",
+        text: "Your account has been created successfully!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
 
+      // 6. Navigate to homepage
       navigate("/");
-      toast.success("Signup Successful");
     } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
+      console.error(err);
+      toast.error(err.message);
+      Swal.fire({
+        title: "Error!",
+        text: err.message || "Something went wrong!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const form = event.target;
+  //   const name = form.name.value;
+  //   const email = form.email.value;
+  //   const password = form.password.value;
+  //   const image = form.image.files[0];
+
+  //   try {
+  //     // 1. Upload image to imgbb
+  //     const photoURL = await imageUpload(image);
+
+  //     // 2. Create user in Firebase
+  //     const result = await createUser(email, password);
+
+  //     // 3. Update user profile in Firebase
+  //     await updateUserProfile(name, photoURL);
+
+  //     // 4. Send user data to your MongoDB
+  //     const userData = {
+  //       name,
+  //       image: photoURL,
+  //       email,
+  //     };
+  //     await axios.post(
+  //       `${import.meta.env.VITE_API_URL}/users/${email}`,
+  //       userData
+  //     );
+
+  //     // 5. Success notification
+  //     Swal.fire({
+  //       title: "Success!",
+  //       text: "Your account has been created successfully!",
+  //       icon: "success",
+  //       confirmButtonText: "OK",
+  //     });
+
+  //     // 6. Navigate to homepage
+  //     navigate("/");
+  //   } catch (err) {
+  //     console.error(err);
+  //     toast.error(err.message);
+  //     Swal.fire({
+  //       title: "Error!",
+  //       text: err.message || "Something went wrong!",
+  //       icon: "error",
+  //       confirmButtonText: "OK",
+  //     });
+  //   }
+  // };
 
   // Handle Google Signin
   const handleGoogleSignIn = async () => {
