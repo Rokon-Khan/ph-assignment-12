@@ -15,7 +15,7 @@ const StudentMenu = () => {
       <MenuItem
         icon={BsFingerprint}
         label="My Enroll Classes"
-        address="my-orders"
+        address="my-enroll-classes"
       />
 
       <div
