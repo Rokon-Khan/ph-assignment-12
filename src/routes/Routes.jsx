@@ -20,6 +20,7 @@ import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 import ApplyForTeaching from "../pages/ApplyForTeaching";
 import AdminTeacherRequests from "../pages/Dashboard/Admin/AdminTeacherRequests";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
+import TeacherRequestStatus from "../pages/Dashboard/Student/TeacherRequestStatus";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import PaymentPage from "../pages/PaymentPage";
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -201,6 +202,14 @@ const router = createBrowserRouter([
             <AdminRoute>
               <UsersTable />
             </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "user-teacher-rquest",
+        element: (
+          <PrivateRoute>
+            <TeacherRequestStatus />
           </PrivateRoute>
         ),
       },

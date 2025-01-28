@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BsFingerprint } from "react-icons/bs";
+import { TbUsersPlus } from "react-icons/tb";
 import BecomeSellerModal from "../../../Modal/BecomeSellerModal";
 import MenuItem from "./MenuItem";
 const StudentMenu = () => {
@@ -15,6 +16,12 @@ const StudentMenu = () => {
         icon={BsFingerprint}
         label="My Enroll Classes"
         address="my-enroll-classes"
+      />
+
+      <MenuItem
+        icon={TbUsersPlus}
+        label="Teacher Request"
+        address="user-teacher-rquest"
       />
 
       {/* <div
