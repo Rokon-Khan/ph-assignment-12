@@ -17,6 +17,8 @@ import AddClass from "../pages/Dashboard/Teacher/AddClass";
 import MyClasses from "../pages/Dashboard/Teacher/MyClasses";
 import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 
+import ApplyForTeaching from "../pages/ApplyForTeaching";
+import AdminTeacherRequests from "../pages/Dashboard/Admin/AdminTeacherRequests";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PaymentPage></PaymentPage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/teach-on",
+        element: (
+          <PrivateRoute>
+            <ApplyForTeaching></ApplyForTeaching>
           </PrivateRoute>
         ),
       },
@@ -126,6 +136,16 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "teacher-request",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminTeacherRequests />
             </AdminRoute>
           </PrivateRoute>
         ),
