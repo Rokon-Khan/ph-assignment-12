@@ -67,12 +67,25 @@ const Navbar = () => {
                       : "hover:text-blue-500"
                   }`
                 }
-                to="/classes"
+                to="/allclases"
               >
-                Classes
+                All Classes
               </NavLink>
 
               <NavLink
+                className={({ isActive }) =>
+                  `font-bold ${
+                    isActive
+                      ? "text-blue-500  bg-white px-3 py-2 rounded-xl"
+                      : "hover:text-blue-500"
+                  }`
+                }
+                to="/teach-on"
+              >
+                Teach On Edu
+              </NavLink>
+
+              {/* <NavLink
                 className={({ isActive }) =>
                   `font-bold ${
                     isActive
@@ -83,7 +96,7 @@ const Navbar = () => {
                 to="/contact-us"
               >
                 Contact Us
-              </NavLink>
+              </NavLink> */}
             </ul>
           </div>
           <Link
@@ -130,9 +143,9 @@ const Navbar = () => {
               }
               to="/teach-on"
             >
-              Teach On
+              Teach On Edu
             </NavLink>
-            <NavLink
+            {/* <NavLink
               className={({ isActive }) =>
                 `font-bold ${
                   isActive
@@ -144,7 +157,7 @@ const Navbar = () => {
               // to={`/addcampaign/${user?.id}`}
             >
               Contact Us
-            </NavLink>
+            </NavLink> */}
           </ul>
         </div>
         <div className="navbar-end gap-5">

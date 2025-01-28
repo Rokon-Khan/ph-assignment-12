@@ -25,7 +25,7 @@ const BecomeTeacherSection = () => {
           to="/teach-on"
           className="bg-blue-500 text-white py-2 px-5 rounded-md hover:bg-gray-800 transition duration-300"
         >
-          Start Teaching Today
+          Become A Teacher
         </Link>
       </div>
     </div>

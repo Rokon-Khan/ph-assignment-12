@@ -36,7 +36,7 @@ const Slider = () => {
                 </p>
 
                 <Link
-                  to="/allclasses"
+                  to="/allclases"
                   className="btn bg-blue-500 text-xl font-bold text-white"
                 >
                   Visit All Classes
@@ -63,7 +63,7 @@ const Slider = () => {
                 </p>
 
                 <Link
-                  to="/allclasses"
+                  to="/allclases"
                   className="btn bg-blue-500 text-xl font-bold text-white"
                 >
                   Visit All Classes
@@ -90,7 +90,7 @@ const Slider = () => {
                 </p>
 
                 <Link
-                  to="/allclasses"
+                  to="/allclases"
                   className="btn bg-blue-500 text-xl font-bold text-white"
                 >
                   Visit All Classes
