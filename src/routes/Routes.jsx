@@ -19,6 +19,7 @@ import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 
 import AboutUs from "../pages/AboutUs";
 import ApplyForTeaching from "../pages/ApplyForTeaching";
+import ContactUs from "../pages/ContactUs";
 import AdminTeacherRequests from "../pages/Dashboard/Admin/AdminTeacherRequests";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import TeacherRequestStatus from "../pages/Dashboard/Student/TeacherRequestStatus";
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/about-us",
         element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/sign-up",
