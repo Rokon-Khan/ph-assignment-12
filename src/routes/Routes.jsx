@@ -29,6 +29,7 @@ import Login from "../pages/Login";
 import PaymentPage from "../pages/PaymentPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Register from "../pages/Register";
+import TermsOfUse from "../pages/TermsOfUse";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import TeacherRoute from "./TeacherRoute";
@@ -86,10 +87,10 @@ const router = createBrowserRouter([
         path: "/privacy-policy",
         element: <PrivacyPolicy></PrivacyPolicy>,
       },
-      // {
-      //   path: "/terms-of-use",
-      //   element: <TermsOfUse></TermsOfUse>,
-      // },
+      {
+        path: "/terms-of-use",
+        element: <TermsOfUse></TermsOfUse>,
+      },
       {
         path: "/sign-up",
         element: <Register></Register>,
