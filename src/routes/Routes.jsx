@@ -20,6 +20,7 @@ import UpdateClass from "../pages/Dashboard/Teacher/UpdateClass";
 import AboutUs from "../pages/AboutUs";
 import ApplyForTeaching from "../pages/ApplyForTeaching";
 import ContactUs from "../pages/ContactUs";
+import CookiePolicy from "../pages/CookiePolicy";
 import AdminTeacherRequests from "../pages/Dashboard/Admin/AdminTeacherRequests";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import TeacherRequestStatus from "../pages/Dashboard/Student/TeacherRequestStatus";
@@ -76,6 +77,18 @@ const router = createBrowserRouter([
         path: "/contact-us",
         element: <ContactUs></ContactUs>,
       },
+      {
+        path: "/cookie-policy",
+        element: <CookiePolicy></CookiePolicy>,
+      },
+      // {
+      //   path: "/privacy-policy",
+      //   element: <PrivacyPolicy></PrivacyPolicy>,
+      // },
+      // {
+      //   path: "/terms-of-use",
+      //   element: <TermsOfUse></TermsOfUse>,
+      // },
       {
         path: "/sign-up",
         element: <Register></Register>,
