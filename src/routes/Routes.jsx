@@ -27,6 +27,7 @@ import TeacherRequestStatus from "../pages/Dashboard/Student/TeacherRequestStatu
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import PaymentPage from "../pages/PaymentPage";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Register from "../pages/Register";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -81,10 +82,10 @@ const router = createBrowserRouter([
         path: "/cookie-policy",
         element: <CookiePolicy></CookiePolicy>,
       },
-      // {
-      //   path: "/privacy-policy",
-      //   element: <PrivacyPolicy></PrivacyPolicy>,
-      // },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
       // {
       //   path: "/terms-of-use",
       //   element: <TermsOfUse></TermsOfUse>,
